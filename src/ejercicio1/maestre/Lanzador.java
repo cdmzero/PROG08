@@ -57,7 +57,7 @@ public class Lanzador {
     String   cadenaCandidata = "";
     
     //Palindromas 
-    //         cadenaCandidata = "Tenet";
+    //       cadenaCandidata = "Tenet";
     //       cadenaCandidata = "A luna ese anula";
     //       cadenaCandidata = "A mama Roma le aviva el amor a papa y a papa Roma le aviva el amor a mama";
     //       cadenaCandidata = "A mi loca Colima";
@@ -72,7 +72,7 @@ public class Lanzador {
      //      cadenaCandidata = "A mame Roma le aviva el amor a papa y a papa Roma le aviva el amor a mama";
      //      cadenaCandidata = "A mi loca gColima";
      //      cadenaCandidata = "pepito grillo";
-     //      cadenaCandidata = "ola";
+    //       cadenaCandidata = "ola";
  
     
    boolean confirmacion = esPalindroma(cadenaCandidata);
@@ -89,7 +89,7 @@ public class Lanzador {
       System.out.println("------------");
       System.out.println("Ejercicio 4");
       
-   String   cadenaParaRevertir = "hola como estas";
+   String   cadenaParaRevertir = "A luna ese anula";
    
    
    String cadenaRevertida = RevertirCadena(cadenaParaRevertir);

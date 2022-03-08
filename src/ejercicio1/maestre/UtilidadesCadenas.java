@@ -65,6 +65,9 @@ public class UtilidadesCadenas {
      cadenaCandidata = cadenaCandidata.toLowerCase().replaceAll(" ", ""); //Quitamos espacios en blancos y ponemos todos los caracters en minusculas;
 
    
+     
+     //Solucion propuesta antes de haber hecho el ejercicio 4 (Anti Kiss solution)
+     
        char iLetra; //Primera letra por la izquierda
        char dLetra; //Primera letra por la derecha
        
@@ -110,16 +113,32 @@ public class UtilidadesCadenas {
             contador++;
        }
        
-       //Si las iteraciones estimadas(impar o par cambiand) han sido match, bingo
+       //Si las iteraciones estimadas(impar o par cambiando) han sido match, bingo
        
        if (coincidencias == iteraciones ){
            
            confirmacion = true;
            }
-       
       
-      //Retornamos el resultado 
-       
+      
+      //KISS Solution -> 
+                           
+             String CadenaRevertida = "";
+            
+         for (int i = 1 ; i < cadenaCandidata.length() +1 ; i++)
+         {
+             
+           CadenaRevertida += String.valueOf(cadenaCandidata.charAt(cadenaCandidata.length() - i));
+         
+          // System.out.println("contador de coincidencia:"+coincidencias);           
+         }
+        
+        if (CadenaRevertida == cadenaCandidata )
+        {
+        confirmacion = true;
+        }
+     
+  //Retornamos el resultado 
         
         return confirmacion;
     }
@@ -129,13 +148,8 @@ public class UtilidadesCadenas {
      
       String CadenaRevertida = "";
          for (int i = 1 ; i < cadenaPararevertir.length() +1 ; i++){
-           
-           
-        
-           
+             
            CadenaRevertida += String.valueOf(cadenaPararevertir.charAt(cadenaPararevertir.length() - i));
-         
-          // System.out.println("contador de coincidencia:"+coincidencias);
  
             
        }
