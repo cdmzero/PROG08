@@ -32,7 +32,7 @@ static CuerpoCeleste cceleste = new CuerpoCeleste();
        ArrayList<ArrayList<String>> cceleste = new ArrayList<>(index);
 
        
-       
+       int nPreguntas=4;
        String decision = null;
        boolean menu = true;
           
@@ -64,11 +64,11 @@ static CuerpoCeleste cceleste = new CuerpoCeleste();
                      throw new NumberFormatException("No puede ser nulo");
                     }else{
                     
-                            for(int i=0; i < 4 ; i++) {
+                            for(int i=0; i < nPreguntas ; i++) {
                                 
                            cceleste.add(new ArrayList());
                             
-                            }
+                           }
                         
                 
                             cceleste.get(index).add(0, String.valueOf(codigoCuerpo));
