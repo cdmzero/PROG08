@@ -21,65 +21,64 @@ public class Lanzador {
     static BufferedReader dato = new BufferedReader(new InputStreamReader(System.in));
     
     
-    
+    /*
+      Generamso aleatoriamente los numeros para las 3 posiciones
+      */
     
       static int[][] PosicionJuego()
       {
-            Random rand = new Random();
-          
             int numeroAleatorio = 0;
-           
-            
-                    int numerosAleatorios[][]; 
-                        numerosAleatorios = new int[3][1];
+            int numerosAleatorios[][]; //inicializamos el array
+            numerosAleatorios = new int[3][1]; //definimos el numero de indices que tendra cada uno de los arrays; en el primero definimos la posicion y en el segundo su valor
+            Random rand = new Random();  
       
-            for(int i = 0 ; i < 3 ; i++)
-            {
-                      numeroAleatorio = rand.nextInt(8)+1;
-                      numerosAleatorios[i][0] = numeroAleatorio;
-            }
-            
-            
+                for(int i = 0 ; i < 3 ; i++)
+                {
+                    numeroAleatorio = rand.nextInt(8)+1;
+                    numerosAleatorios[i][0] = numeroAleatorio; //iteramos 3 las posciones para incluir los 3 valores aleatorios del 1 al 8
+                }
+                
             return numerosAleatorios;
       }
       
-      
-      static int[][] DecisionJugador() throws IOException{
-      
-            int decision[][];
-                decision = new int[3][1];
-            boolean menu = true;
+      /*
+      Pedimos al jugador los numeros para las 3 posiciones
+      */
+      static int[][] DecisionJugador() throws IOException
+      {
           
-  
+            boolean menu = true;
+            int decision[][]; //inicializamos el array
+            decision = new int[3][1]; //definimos el numero de indices que tendra cada uno de los arrays; en el primero definimos la posicion y en el segundo su valor
             
             
-        System.out.println("Elige un numero del 1 al 8");     
+            System.out.println("Elige 3 numeros rango[1-8] ");     
         
-          while (menu) {
+            while (menu) //menu para detectar inputs invalidos y rango de valores admitidos
+            {
                   for(int i = 0 ; i < 3 ;)
                   {      
                         try 
                         { 
-                            System.out.print("---> ");
+                          System.out.print("---> ");
 
                           decision[i][0] = Integer.parseInt(dato.readLine());
 
-                          switch(decision[i][0])
-                          {
+                            switch(decision[i][0])
+                            {
 
-                              case 1,2,3,4,5,6,7,8:
+                                case 1,2,3,4,5,6,7,8: 
 
-                              i++;
-                               if (i < 3)
-                               {
-                                   menu = false;
-                               }
+                                i++;
+                                    if (i < 3)
+                                    {
+                                        menu = false;
+                                    }
+                                break;
 
-                              break;
-
-                              default:
-                                  System.err.println("Opcion invalida");
-                          }
+                                default:
+                                    System.err.println("Opcion invalida");
+                            }
                  
                         }
                         catch(InputMismatchException err){
@@ -89,8 +88,8 @@ public class Lanzador {
                         System.err.println(err.getMessage());
                         }
                  }
-             } 
-          return decision;
+            } 
+        return decision;
           
       }
       
@@ -98,11 +97,11 @@ public class Lanzador {
     
     public static void main(String args[]) throws IOException
   {
-        int[][] posicionesmaquina = PosicionJuego();
+        int[][] posicionesmaquina = PosicionJuego(); //Generamos los valores a adivinar de manera aleatoria
         
     
         
-        System.out.print("Posiciones maquina");
+        System.out.print("Posiciones de la maquina:");
         for(int i = 0 ; i < posicionesmaquina.length ; i++)
         {
            
@@ -111,16 +110,17 @@ public class Lanzador {
             
         }
      
-        int rondasTotales = 1;
-        boolean menu = true;
+        int rondasTotales = 1; //Contador de rondas
+        boolean menu = true; //Generamos un menu para controlar las rondas
       
      
         
-       while(rondasTotales < 8 ){
-        System.out.println("");
+       while(menu){ 
+           
+       System.out.println("");
        int solventado=0;    
               
-        int[][] PosicionesDelJugador = DecisionJugador();
+        int[][] PosicionesDelJugador = DecisionJugador(); //Preguntamos al jugador
      
                 
     
@@ -131,181 +131,66 @@ public class Lanzador {
                     
                       boolean encontrado = false;   
 
-                     if( PosicionesDelJugador[i][0] == posicionesmaquina[i][0] ){
+                     if( PosicionesDelJugador[i][0] == posicionesmaquina[i][0]) //Si las posicion y valor son los mismos entre maquina y jugador devuelve verde  
+                     {
 
                          System.out.print(" Verde ");
 
-                         solventado++;
-                      encontrado = true;
+                         solventado++; //Sumamos y seguimos hasta los 3 puntos para ganar
+                      encontrado = true; //Decimos que lo hemos encontrado para no iterar mas
                      }
 
 
                      if (encontrado == false)
                      {
-                         for (int j = 0 ; j < 3; j++)
+                         for (int j = 0 ; j < 3; j++) //Ahora buscamos el valor de la misma posicion por las 3 posiciones de la maquina 
                          {
 
-                             if(PosicionesDelJugador[i][0] == posicionesmaquina[j][0]){
+                             if(PosicionesDelJugador[i][0] == posicionesmaquina[j][0]){ //Si coincide encontramos devuelve amarillo
 
-                                 System.out.print(" Amarillo ");
+                                 System.out.print(" Amarillo "); 
 
 
                                  encontrado = true;
                                  break;
                              }
                           }
-                     }
-                     if (encontrado == false){
+                         
+                         if (encontrado == false){ //Si no hemos encontrado nada en ninguna de las 2 iteraciones devuelve rojo
                           System.out.print(" ROJO ");
-                      }
+                         }
+                         
+                     }
+                     
 
 
                  }
               
-       if (solventado == 3){
-           System.out.println("");
-           
-           System.out.println("Enhorabuena has superado el reto en " + rondasTotales + " rondas");
-       break;
-       }
+              
+              //Si hemos acertado 3 veces la posicion y valor entre la maquina y el jugador ganamos
+              
+                if(solventado == 3)
+                {
+                    System.out.println("");
+                    System.out.println("Enhorabuena has superado el reto en " + rondasTotales + " rondas");
+                    break;
+                }
+                else if(rondasTotales == 7) //Si hemos gastados las rondas perdimos
+                {
+                    
+                    System.out.println("");
+                    System.out.println("Losiento has perdido");
+                    break;
+                }
+                
+                
         rondasTotales++;
        
        }
+       
           
  
        
-        
-                  
-                  
-        
-        
-        
-     /*   
-          for( int i = 0 ; i <= n-1 ; i++ )
-          {  
-              matriz[i][i] = i;
-              
-               System.out.println("Todos los valores de --->"+ matriz[i][i]);
-               
-               
-               for( int j : matriz[i] ){
-               
-               matriz[i][j] = numeroAleatorio();
-               
-               int valor = matriz[i][j];
-               
-               System.out.println("Valor aleatorio -->"+ matriz[i][j]);
-               
-                if(valorMaximo < valor )
-                {  
-                    valorMaximo = valor ;
-                }
-               
-               }
-                System.out.println("Valor Maximo en vuelta -> "+ i +" valor --> "+valorMaximo);
-                System.out.println("");
-                valoresPromedio[i] = valorMaximo;
-                valorMaximo = 0;
-          }
-        
-        
-        
-        
-        */
-        
-        
-        
-        
-        
-        
-      
-      /*  //Ejercicio realizado sin array
-        
-                    while(menu){
-
-                        rondasTotales++;
-
-
-                               posicionJugador = DecisionJugador();
-
-                                if( posicionMosca == posicionJugador )  
-                                {
-                                    System.out.println("Ganaste");
-                                    System.out.println("Total de rondas = "+ rondasTotales);
-                                    menu = false;
-
-                                }
-                                else if( (posicionMosca+1 == posicionJugador ) || ( posicionMosca-1 == posicionJugador) )  
-                                {
-                                    System.out.println("Te quedaste Cerca");
-                                }
-                                else if( rondasTotales >= 5 )
-                                {
-                                    System.out.println("Perdiste");
-                                    menu = false;
-                                }
-                   }
-
-      
-      //Ejercicio realizado con un array booleano;
-      
-      boolean tablero[]; //Declaramos el array tablero y su tipo
-      tablero = new boolean[9]; //Declaramos su longitud =>Por defecto se declaran como false todos los valores contenidos dentro del array
-      
-      
-      boolean moscaTablero = true; //Declaramos a la mosca
-      
-      //tablero[posicionMosca] = moscaTablero; //Declaramos la posicion de la mosca
-
-      /*
-      //  while(menu){
-
-        //posicionJugador = DecisionJugador(); //Declaramos la decision del jugador
-            
-            
-           for (int i=0 ; i <= tablero.length -1 ; i++) 
-           { //Declaramos un bucle con la longitud del tablero -1 (los arrays empiezan en 0) e iteramos
-
-                     if (tablero[i] == true) //Si el valor de la posicion iterada del tablero hace match con true hemos encontrado a la mosca
-                     {
-                         System.out.println("Estoy aqui casilla nº "+ i);
-
-                         if(i==posicionJugador)
-                         { //Si el valor que ha facilitado el usuario es igual a la posicion del tablero gana el juego
-
-                             System.out.println("Has ganado");
-                             System.out.println("Total de rondas = "+ rondasTotales);
-                                    
-                             
-                             menu=false;
-                             break;
-                         }
-                         else if( i == posicionJugador+1 || i == posicionJugador-1 ) 
-                         { //Si la decision del usuario es ayacente a la mosca
-
-                              System.out.println("Te has quedado cerca");
-                         }
-                         else
-                         {
-                         
-                             System.out.println("Fallaste");
-                         
-                         }
-                         
-                         System.out.println("Rondas restantes :"+ (5 - rondasTotales));
-
-                          if (rondasTotales >= 5) 
-                          { //Perdimos el juego
-                              System.out.println("FIN");
-                              menu=false;
-                          }
-                              rondasTotales++;
-                     }
-                 
-             }
-
-          }
-*/
-      
+ 
   }
 }

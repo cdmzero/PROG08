@@ -5,13 +5,11 @@
 package ejercicio4.maestre;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Random;
 
 /**
  *
@@ -25,14 +23,12 @@ static List<CuerpoCeleste> cuerposCelestes = new ArrayList<>();
 static CuerpoCeleste cceleste = new CuerpoCeleste();
 
     
-      static String Decision() throws IOException, Exception
+      static void Decision() throws IOException, Exception
       {
-       int index = 0;
        
-       ArrayList<ArrayList<String>> cceleste = new ArrayList<>(index);
+       ArrayList<CuerpoCeleste> listaCuerpos = new ArrayList<>();
 
-       
-       int nPreguntas=4;
+      
        String decision = null;
        boolean menu = true;
           
@@ -41,70 +37,64 @@ static CuerpoCeleste cceleste = new CuerpoCeleste();
            System.out.println(" --- Menu Cuerpos celestes --- ");
                     try 
                     {
-                    System.out.println("Añade el codigo");
+                    System.out.print("Añade el codigo --> ");
 
                     int codigoCuerpo = Integer.parseInt(dato.readLine());
+                    
+                    System.out.println("");
 
-                    System.out.println("Añade el nombre");
+                    System.out.print("Añade el nombre --> ");
 
                     String nombre = dato.readLine();
+                    
+                    System.out.println("");
 
-                    System.out.println("Añade el tipo");
+                    System.out.print("Añade el tipo --> ");
 
                     String tipoCuerpo = dato.readLine();
+                    
+                    System.out.println("");
 
-                    System.out.println("Añade el diametro");
-
-                   int diametro = Integer.parseInt(dato.readLine());
-                   
+                    System.out.print("Añade el diametro --> ");
+                    int diametro = Integer.parseInt(dato.readLine());
+                    System.out.println("");
                    
                     
-                    if((nombre == null ) || (codigoCuerpo == 0 )|| (tipoCuerpo == null) || (diametro == 0))
+                    if((nombre.isEmpty()) || (codigoCuerpo <= 0 )|| (tipoCuerpo.isEmpty()) || (diametro <= 0)) //controlamos que no haya datos en nulos
                     {
-                     throw new NumberFormatException("No puede ser nulo");
-                    }else{
-                    
-                            for(int i=0; i < nPreguntas ; i++) {
-                                
-                           cceleste.add(new ArrayList());
-                            
-                           }
+                     throw new NumberFormatException("Ningun dato puede ser nulo o negativo, vuelve a intentarlo");
+                    }
+                    else
+                    {
+                        //Costruimos el objeto con las preguntas como valores a los atributos y lo añadimos a la lista
+                         listaCuerpos.add(new CuerpoCeleste(codigoCuerpo,nombre, tipoCuerpo, diametro));
                         
-                
-                            cceleste.get(index).add(0, String.valueOf(codigoCuerpo));
-                            cceleste.get(index).add(1, nombre);
-                            cceleste.get(index).add(2, tipoCuerpo);
-                            cceleste.get(index).add(3, String.valueOf(diametro));
-                            }
-                    boolean submenu = true;
+                           
+                      }
+                            boolean submenu = true;
                             while(submenu)
                             {
                                 System.out.println("¿Deseas añadir mas cuerpos celestes? S,s o N,n ");
 
                                 decision = dato.readLine();
                                 
-                                index++;
 
                                 if("S".equals(decision) || "s".equals(decision) )
                                 {
                                 
+                               
                                 submenu=false;
                                 break;
 
                                 }
                                 else if("N".equals(decision) || "n".equals(decision))
                                 {
-                                 
-                                    for (int i = 0 ; i < index ; i++){
+                                 //Listamos todos los cuerpos desde el primer hasta el ultimo index
+                                    for (int i = 0 ; i < listaCuerpos.size() ; i++){
                                             
-                                            System.out.println("Index--->"+cceleste.get(i));
+                                            System.out.println("Cuerpo celeste---> "+listaCuerpos.get(i));
                                             
-                                            
-                                            for( int j = 0 ; j < cceleste.get(i).size() ; j++){
-                                            
-                                                System.out.println("Valores--->"+cceleste.get(i).get(j).toString());
-                                            
-                                            }
+                                          
                                     }
                                     
                                 menu=false;
@@ -129,23 +119,16 @@ static CuerpoCeleste cceleste = new CuerpoCeleste();
           
           
           }
-       return decision;
+      
       }
       
-     static int numeroAleatorio()
-      {
-          Random rand = new Random();
-          int numeroAleatorio = 0;
-          numeroAleatorio = rand.nextInt(9)+1;
-          return numeroAleatorio;
-      }
-     
+
           
     public static void main(String args[]) throws IOException, Exception
     {
         
        
-            String decision =  Decision();
+             Decision();
          
    
     }
