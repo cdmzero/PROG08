@@ -28,7 +28,7 @@ public class Lanzador {
             Random rand = new Random();
           
             int numeroAleatorio = 1;
-            numeroAleatorio = rand.nextInt(8);
+            numeroAleatorio = rand.nextInt(8)+1;
       
             return numeroAleatorio;
       }
