@@ -1,4 +1,4 @@
-package ejercicio1.maestre;
+package maestre.ejercicio1;
 
 
 
