@@ -1,9 +1,5 @@
 # PROG08
 
-<style type="text/css">
-    ol { list-style-type: lower-alpha; }
-</style>
-
 # 1. Operaciones con cadenas.
 ###### Funciones empleadas para resolver estos questiones.
 1.  Reciba 2 cadenas y devuelve una cadena resultado de unir las dos anteriores.
