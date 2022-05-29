@@ -75,64 +75,59 @@ static BufferedReader dato = new BufferedReader(new InputStreamReader(System.in)
           
     public static void main(String args[]) throws IOException, Exception
     {
-        
-       
-            int n =  Decision();
-            int matriz[][];
-            matriz =  new int[n][n];
+            int numeroUsuario =  Decision();
             
+            int matriz[][];
+            //Le damos la longitud que el user decida
+            matriz =  new int[numeroUsuario][numeroUsuario];
+            int promedio=0;
+            
+            //Recogemos los valores en otro array y le damos la misma longitud
             int valoresPromedio[];
-            valoresPromedio = new int [n];
+            valoresPromedio = new int [numeroUsuario];
             
             
             int valorMaximo = 0;
-   
+            System.out.println("");
 
-          for( int i = 0 ; i <= n-1 ; i++ )
-          {  
-              matriz[i][i] = i;
-              
-               System.out.println("Todos los valores de --->"+ matriz[i][i]);
-               
-               
-               for( int j : matriz[i] ){
-               
-               matriz[i][j] = numeroAleatorio();
-               
-               int valor = matriz[i][j];
-               
-               System.out.println("Valor aleatorio -->"+ matriz[i][j]);
-               
-                if(valorMaximo < valor )
-                {  
-                    valorMaximo = valor ;
-                }
-               
-               }
-                System.out.println("Valor Maximo en vuelta -> "+ i +" valor --> "+valorMaximo);
-                System.out.println("");
-                valoresPromedio[i] = valorMaximo;
-                valorMaximo = 0;
-          }
+            for( int i = 0 ; i <= numeroUsuario-1 ; i++ )
+            {  
+                 for( int j : matriz[i] )
+                 {
+                     // Populamos las posiciones de la matriz 
+                     matriz[i][j] = numeroAleatorio();
+
+                     // Tomamos el valor de la posicion actual
+                      int valorActual = matriz[i][j];
+                      System.out.print(""+ matriz[i][j]);
+                      
+                     // Comparamos si el valor actual con el maximo
+                          if(valorMaximo < valorActual )
+                          {  
+                              valorMaximo = valorActual ;
+                          }
+                 }
+                 //Almacenamos en un array el valor maximo de la fila
+                 System.out.println("     Valor Maximo---> "+valorMaximo);
+                 valoresPromedio[i] = valorMaximo;
+                 valorMaximo = 0;
+            }
           
           
-          int promedio=0;
-          
-                  for( int valor : valoresPromedio){
-                      promedio += valor ;
-                  }
-                  
-                    promedio /= n; 
+            
+                    
+                    for( int valor : valoresPromedio)
+                    {
+                        //Sumamos todos los valores maximos
+                        promedio += valor ;
+                    }
+                      //calculamos el promedio dividiendo la suma de todos los valores maximos entre el numero del usuario
+                      promedio /= numeroUsuario;
+                      System.out.println("");
          
-         System.out.println("Valor promedio --->"+ promedio);
+            System.out.println("     Valor Promedio ---> "+ promedio);
             
             
-    }
-
-   
-    
-    
-
-    
+   }    
   
 }

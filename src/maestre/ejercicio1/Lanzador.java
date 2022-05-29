@@ -15,9 +15,13 @@ public class Lanzador {
     
     
     
-     //E1
+    //E1
     static public String fusionarCadenas(String cad1, String cad2){
-        String cadResultado = null; 
+        String cadResultado = null;
+        System.out.println("");
+        System.out.println("Cad1: " + cad1);
+        System.out.println("Cad2: " + cad2);
+        System.out.println("");
         
         cadResultado = cad1 + cad2;
                 
@@ -28,7 +32,7 @@ public class Lanzador {
     static public int numeroRepeticiones(String cadena, char letra){
         
         int repeticiones = 0;
-        char letraCadena = '?';
+        char letraCadena;
         
         
         for (int i = 0;i< cadena.length(); i++){
@@ -60,67 +64,11 @@ public class Lanzador {
    
      
      //Solucion propuesta antes de haber hecho el ejercicio 4 (Anti Kiss solution)
-     
-     /*
-       char iLetra; //Primera letra por la izquierda
-       char dLetra; //Primera letra por la derecha
-       
-       int coincidencias = 0; //contador de coincidencias
-       int contador = 1; //contador para la cuenta regresiva de caracteres.
-       int impar = 0; //si es impar debemos dar una iteracion extra para redondear al numero mayor entero.
-
-       
-       if (cadenaCandidata.length() % 2 != 0){
-           impar = 1;
-       }
-       
-      
-       int iteraciones = (cadenaCandidata.length() / 2) + impar; //total iteraciones del bucle
-
-       
-       //recorremos la palabras por la izquierda y por la derecha y comparamos 
-       for (int i = 0 ; i < iteraciones ; i++){
-           
-           
-           int CuentaRegresiva = cadenaCandidata.length() - contador;
-           
-           iLetra = cadenaCandidata.charAt(i);
-           
-          // System.out.println(i+"vuelta: primera palabra -> letra: "+ nLetra );
-         //  System.out.println("---");
-         
-           dLetra = cadenaCandidata.charAt(CuentaRegresiva);
-           
-          //   System.out.println(i+"vuelta: segunda palabra -> letra: "+ uLetra );
-         //    System.out.println("--->");
-         
-         
-         //Si hay match, 1 punto.
-           
-            if(iLetra == dLetra){
-
-                 coincidencias++;
-            }
-          
-          // System.out.println("contador de coincidencia:"+coincidencias);
- 
-            contador++;
-       }
-       
-       //Si las iteraciones estimadas(impar o par cambiando) han sido match, bingo
-       
-       if (coincidencias == iteraciones ){
-           
-           confirmacion = true;
-           }
-      
-      */
-     
-      //KISS Solution -> 
+    
                            
              String CadenaRevertida = "";
             
-         for (int i = 1 ; i < cadenaCandidata.length() +1 ; i++)
+         for (int i = 1 ; i <= cadenaCandidata.length() ; i++)
          {
              
            CadenaRevertida += String.valueOf(cadenaCandidata.charAt(cadenaCandidata.length() - i));
@@ -128,11 +76,11 @@ public class Lanzador {
               
          }
         
-        
+        System.out.println("CadenaRevertida: " +CadenaRevertida );
+        System.out.println("");
            
         if (CadenaRevertida.equals(cadenaCandidata) )
         {
-            System.out.println("true");
         confirmacion = true;
         }
      
@@ -145,7 +93,7 @@ public class Lanzador {
      static public String RevertirCadena(String cadenaPararevertir){
      
       String CadenaRevertida = "";
-         for (int i = 1 ; i < cadenaPararevertir.length() +1 ; i++){
+         for (int i = 1 ; i <= cadenaPararevertir.length() ; i++){
              
            CadenaRevertida += String.valueOf(cadenaPararevertir.charAt(cadenaPararevertir.length() - i));
  
@@ -174,7 +122,7 @@ public class Lanzador {
     
     cadResultado = fusionarCadenas(cad1,cad2);
     
-      System.out.println(cadResultado);
+      System.out.println("Resultado: "+ cadResultado);
       
    
       
@@ -184,10 +132,17 @@ public class Lanzador {
    
     int vecesRepetida = 0;
     char letra = 'p';
+    
+      System.out.println("");
+    
+      System.out.println("Cadena: "+ cadResultado);
+      System.out.println("Letra: " + letra);
+      
+      System.out.println("");
 
     vecesRepetida = numeroRepeticiones(cadResultado,letra);
   
-      System.out.println("La Letra " + letra + " esta " + vecesRepetida + " veces repetida");
+      System.out.println("Resultado: " + vecesRepetida + " veces repetida");
     
   
       
@@ -196,6 +151,7 @@ public class Lanzador {
       System.out.println("Ejercicio 3");
     
   
+      
     String   cadenaCandidata = "";
     
     //Palindromas 
@@ -216,15 +172,17 @@ public class Lanzador {
      //      cadenaCandidata = "pepito grillo";
     //       cadenaCandidata = "ola";
  
-    
+      System.out.println("");
+      System.out.println("cadenaCandidata: "+ cadenaCandidata);
+
    boolean confirmacion = esPalindroma(cadenaCandidata);
    
-      System.out.print("La cadena -> "+cadenaCandidata);
+      System.out.print("Resultado: ");
    
    if (confirmacion){
-       System.out.println(" -> es palindroma.");
+       System.out.println("palindroma.");
    } else{
-       System.out.println(" -> no es palindroma.");
+       System.out.println("no palindroma.");
    }
 
   //E4
@@ -235,8 +193,11 @@ public class Lanzador {
    
    
    String cadenaRevertida = RevertirCadena(cadenaParaRevertir);
-   
-      System.out.println("La cadena para revertir es -->"+ cadenaParaRevertir +" y el resultado es-->"+ cadenaRevertida);
+      System.out.println("");
+      System.out.println("cadenaParaRevertir: "+ cadenaParaRevertir);
+      System.out.println("");
+      System.out.println("Resultado:"+ cadenaRevertida);
+      System.out.println("");
    
    
    

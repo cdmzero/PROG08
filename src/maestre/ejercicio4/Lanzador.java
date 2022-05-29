@@ -19,14 +19,13 @@ import java.util.List;
 public class Lanzador {
     
 static BufferedReader dato = new BufferedReader(new InputStreamReader(System.in));
-static List<CuerpoCeleste> cuerposCelestes = new ArrayList<>();
 static CuerpoCeleste cceleste = new CuerpoCeleste();
 
     
       static void Decision() throws IOException, Exception
       {
        
-       ArrayList<CuerpoCeleste> listaCuerpos = new ArrayList<>();
+    ArrayList<CuerpoCeleste> listaCuerpos = new ArrayList<>();
 
       
        String decision = null;
